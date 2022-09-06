@@ -2,7 +2,7 @@ import { FlatList, Image, Text, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
 import { styles } from './style'
 import { ImagesPath } from '../../Utils/ImagePaths'
-import { Button, Container, CustomDropDown, CustomInput, Header } from '../../components'
+import { Button, Container, CustomDatePicker, CustomDropDown, CustomInput, Header } from '../../components'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { colors } from '../../styles/Colors'
 import fonts from '../../styles/Fonts'
@@ -62,6 +62,7 @@ const SignUpScreen = () => {
         { id: 1, title: 'Email', image: require('../../assets/images/email.png'), isSelected: true },
         { id: 2, title: 'Social media', image: require('../../assets/images/Group.png'), isSelected: false },
     ])
+    const [date, setDate] = useState(new Date());
 
     const submit = () => {
         if (isScreen == Progressbararray.length) {
@@ -133,8 +134,12 @@ const SignUpScreen = () => {
 
                             }}
                         />
-                        <CustomInput
+                        <CustomDatePicker
                             lable='Birthdate'
+                            date={date}
+                            onConfirm={(date) => {
+                                console.log({ date });
+                            }}
                         />
                     </View>
                 </>}
