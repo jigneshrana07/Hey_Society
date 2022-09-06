@@ -1,4 +1,4 @@
-import { Platform, StyleSheet, Text, View } from 'react-native'
+import { Image, Platform, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import FontSizes from '../styles/FontSizes'
 import fonts from '../styles/Fonts'
@@ -6,14 +6,13 @@ import { colors } from '../styles/Colors'
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import RNPickerSelect, { PickerSelectProps } from 'react-native-picker-select'
 import { ImagesPath } from '../Utils/ImagePaths'
-import FastImage from 'react-native-fast-image'
 
 interface CustomDropDownProps {
     lable: string
 }
 
 const dropdownIcon = () => {
-    return <FastImage source={ImagesPath.down_arrow} resizeMode={'contain'} style={{ height: wp(3.5), width: wp(3.5) }} />
+    return <Image source={ImagesPath.down_arrow} resizeMode={'contain'} style={{ height: wp(3.5), width: wp(3.5) }} />
 }
 
 const CustomDropDown = (props: CustomDropDownProps & PickerSelectProps) => {

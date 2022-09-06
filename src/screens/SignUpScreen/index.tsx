@@ -5,7 +5,6 @@ import { ImagesPath } from '../../Utils/ImagePaths'
 import { Button, Container, CustomDropDown, CustomInput, Header } from '../../components'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { colors } from '../../styles/Colors'
-import FontSizes from '../../styles/FontSizes'
 import fonts from '../../styles/Fonts'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { InterestList } from '../../types/swiperRefType'
@@ -94,16 +93,14 @@ const SignUpScreen = () => {
 
     const renderItem = (item: InterestList) => {
         return (
-            <View style={{ flexDirection: 'row', alignItems: 'center', width: wp(45), marginVertical: wp(2.5) }}>
+            <View style={styles.interestRowview}>
                 <TouchableOpacity
-                    style={{
-                        borderRadius: 2, borderWidth: 2, borderColor: '#767676', width: wp(5), height: wp(5), alignItems: 'center', justifyContent: 'center',
-                    }}
+                    style={styles.checkBoxView}
                     onPress={() => { handleChange(item.id) }}
                 >
-                    <Image source={item.isChecked ? ImagesPath.check : null} resizeMode={'contain'} style={{ height: wp(3), width: wp(3), tintColor: colors.primay_color }} />
+                    <Image source={item.isChecked ? ImagesPath.check : null} resizeMode={'contain'} style={styles.checkImage} />
                 </TouchableOpacity>
-                <Text style={{ marginHorizontal: wp(4), color: '#423E3B', fontSize: FontSizes.SMALL_14 }}>{item.name}</Text>
+                <Text style={styles.interestTxt}>{item.name}</Text>
             </View>
         )
 
@@ -174,7 +171,7 @@ const SignUpScreen = () => {
                     <>
                         <View style={[styles.textView, { marginTop: hp(6) }]}>
                             <Text style={styles.title}>
-                                Select the interest your audience will find more appealing. <Text style={{ color: '#767676', fontFamily: fonts.FONT_POP_REGULAR }}>
+                                Select the interest your audience will find more appealing. <Text style={{ color: colors.light_grey_text, fontFamily: fonts.FONT_POP_REGULAR }}>
                                     (This helps us show you brands that will better connect with your audience and make you earn more.)
                                 </Text>
                             </Text>
@@ -192,12 +189,12 @@ const SignUpScreen = () => {
                 {isScreen == 4 &&
                     <>
                         <View style={styles.textView}>
-                            <Text style={styles.title}>How would you like to earn money?<Text style={{ color: '#767676', fontFamily: fonts.FONT_POP_REGULAR }}>(you can select both)</Text></Text>
+                            <Text style={styles.title}>How would you like to earn money?<Text style={{ color: colors.light_grey_text, fontFamily: fonts.FONT_POP_REGULAR }}>(you can select both)</Text></Text>
                         </View>
                         {earnData.map((item) => (
-                            <TouchableOpacity style={{ backgroundColor: item.isSelected ? '#0D0DE6' : '#F3F3FE', borderRadius: 5, alignSelf: 'center', alignItems: 'center', width: wp(60), height: wp(40), justifyContent: 'center', marginVertical: wp(5), }} onPress={() => selectEarnMoney(item.id)}>
-                                <Image source={item.image} resizeMode={'contain'} style={{ height: wp(8), width: wp(8), tintColor: item.isSelected ? '#FFB500' : colors.black }} />
-                                <Text style={{ color: item.isSelected ? colors.white : colors.black, fontSize: FontSizes.SEMI_LARGE_20, fontFamily: fonts.FONT_POP_MEDIUM, marginVertical: wp(5) }}>{item.title}</Text>
+                            <TouchableOpacity style={[styles.boxView, { backgroundColor: item.isSelected ? colors.dark_blue : colors.off_white }]} onPress={() => selectEarnMoney(item.id)}>
+                                <Image source={item.image} resizeMode={'contain'} style={[styles.earnMoneyImage, { tintColor: item.isSelected ? colors.yellow : colors.black }]} />
+                                <Text style={[styles.earnText, { color: item.isSelected ? colors.white : colors.black }]}>{item.title}</Text>
                             </TouchableOpacity>
                         ))}
                     </>
@@ -205,27 +202,25 @@ const SignUpScreen = () => {
                 {isScreen == 5 &&
                     <View>
                         <View style={[styles.textView, { padding: 0 }]}>
-                            <Text style={styles.title}>Read our rules. <Text style={{ color: '#767676', fontFamily: fonts.FONT_POP_REGULAR }}>(It’s important you follow them so you don’t get banned)</Text></Text>
-                            <Text style={{ fontSize: FontSizes.LARGE_22, fontFamily: fonts.FONT_POP_SEMI_BOLD, marginVertical: wp(5.5), color: '#423E3B' }}>
+                            <Text style={styles.title}>Read our rules. <Text style={{ color: colors.light_grey_text, fontFamily: fonts.FONT_POP_REGULAR }}>(It’s important you follow them so you don’t get banned)</Text></Text>
+                            <Text style={styles.rulesTitle}>
                                 There are some activities that we consider invalid in your account:
                             </Text>
                             {rules.map((item) => (<View style={{ flexDirection: 'row', marginVertical: wp(1), }}>
-                                <View style={{ backgroundColor: colors.black, height: wp(1.5), width: wp(1.5), borderRadius: 5, top: wp(2.5) }} />
-                                <Text style={{
-                                    alignItems: 'center', marginLeft: wp(3), fontSize: FontSizes.SMALL_14, fontFamily: fonts.FONT_POP_MEDIUM, color: '#423E3B'
-                                }}>{item.title}</Text>
+                                <View style={styles.dotView} />
+                                <Text style={styles.rulesText}>{item.title}</Text>
                             </View>))}
-                            <Text style={{ color: '#423E3B', fontSize: FontSizes.SMALL_14, fontFamily: fonts.FONT_POP_REGULAR, marginTop: wp(5.5) }}>For These reasons, we could suspend your account. Creating yout account you agree to our <Text style={{ color: '#33A1FD' }}>terms and conditions.</Text></Text>
+                            <Text style={styles.rulesBottomTxt}>For These reasons, we could suspend your account. Creating yout account you agree to our <Text style={{ color: colors.term_text }}>terms and conditions.</Text></Text>
                         </View>
                     </View>
                 }
             </Container>
             <View style={{ marginBottom: wp(5) }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', alignSelf: 'center', justifyContent: 'space-around', width: wp(68), paddingVertical: wp(2.5) }}>
+                <View style={styles.progressBarView}>
                     {Progressbararray.map((item) => {
                         return (
                             <View
-                                style={[styles.progressbarstyle, { backgroundColor: parseInt(item) <= isScreen ? '#79D300' : '#D3D3D3' }]}
+                                style={[styles.progressbarstyle, { backgroundColor: parseInt(item) <= isScreen ? colors.primay_color : colors.progressbar_grey }]}
                             />
                         );
                     })}

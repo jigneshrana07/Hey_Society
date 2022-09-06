@@ -12,7 +12,17 @@ export const colors = {
     grey: '#777777',
     offGrey: '#DDDDDD',
     lihghtGrey: '#D8D8D8',
-    text_blue: '#343D5E'
+    text_blue: '#343D5E',
+    light_grey_text: '#767676',
+    grey_border_color: '#DADADA',
+    light_blue_text: '#878EA4',
+    grey_rule_text: '#423E3B',
+    yellow: '#FFB500',
+    off_white: '#F3F3FE',
+    dark_blue: '#0D0DE6',
+    term_text: '#33A1FD',
+    progressbar_grey: '#D3D3D3',
+
 
 
 
