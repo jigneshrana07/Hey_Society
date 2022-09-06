@@ -16,7 +16,7 @@ const CustomTextInput = (props: CustomTextInputProps & TextInputProps) => {
             <Text style={styles.labelTxt}>{props.lable}</Text>
             <TextInput
                 {...props}
-                style={[styles.textInputStyle,  props.style]}
+                style={[styles.textInputStyle, props.style]}
             />
         </View>
     )
