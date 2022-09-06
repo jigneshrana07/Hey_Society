@@ -20,7 +20,11 @@ const WelcomeScreen = () => {
         <View style={styles.container}>
             <Header
                 headerRightComponent={
-                    <Image source={ImagesPath.close_icon} resizeMode={'contain'} style={styles.image} />
+                    <Image
+                        source={ImagesPath.close_icon}
+                        resizeMode={'contain'}
+                        style={styles.image}
+                    />
                 }
             />
             <Container>
@@ -29,7 +33,13 @@ const WelcomeScreen = () => {
                     <Text style={styles.subTitle}>Let’s get started with your account</Text>
                 </View>
                 <View style={styles.buttonView}>
-                    <Button width={wp(70)} background={colors.primay_color} lable={'Ok, listo.'} fontcolor={colors.white} onPress={() => navigation.navigate('SignUpScreen')} />
+                    <Button
+                        width={wp(70)}
+                        backgroundColor={colors.primay_color}
+                        lable={'Ok, listo.'}
+                        fontColor={colors.white}
+                        onPress={() => navigation.navigate('SignUpScreen')}
+                    />
                 </View>
             </Container>
         </View>

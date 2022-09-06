@@ -19,19 +19,41 @@ const SplashScreen = () => {
         <View style={styles.container}>
             <Header
                 headerCenterComponent={
-                    <Image source={ImagesPath.hey_society} resizeMode={'contain'} style={styles.headerImage} />
+                    <Image
+                        source={ImagesPath.hey_society}
+                        resizeMode={'contain'}
+                        style={styles.headerImage}
+                    />
                 }
             />
             <Container>
-                <Text style={styles.headerTxtStyle}>Share brands and products with your friends and earn money.</Text>
+                <Text style={styles.headerTxtStyle}>
+                    Share brands and products with your friends and earn money.
+                </Text>
                 <View style={{ alignSelf: 'center' }}>
-                    <Image source={ImagesPath.splash_woman_icon} resizeMode={'contain'} style={styles.image} />
+                    <Image
+                        source={ImagesPath.splash_woman_icon}
+                        resizeMode={'contain'}
+                        style={styles.image}
+                    />
                 </View>
                 <View style={styles.buttonView}>
                     <View style={{ marginVertical: wp(3) }}>
-                        <Button background={colors.primay_color} width={wp(65)} lable={'Login'} fontcolor={colors.white} onPress={() => navigation.navigate('SignInScreen')} />
+                        <Button
+                            backgroundColor={colors.primay_color}
+                            width={wp(65)}
+                            lable={'Login'}
+                            fontColor={colors.white}
+                            onPress={() => navigation.navigate('SignInScreen')}
+                        />
                     </View>
-                    <Button background={colors.green} width={wp(65)} lable={'Signup'} fontcolor={colors.white} onPress={() => navigation.navigate('WelcomeScreen')} />
+                    <Button
+                        backgroundColor={colors.green}
+                        width={wp(65)}
+                        lable={'Signup'}
+                        fontColor={colors.white}
+                        onPress={() => navigation.navigate('WelcomeScreen')}
+                    />
                 </View>
             </Container>
         </View>

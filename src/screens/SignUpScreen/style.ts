@@ -1,10 +1,8 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { colors } from '../../styles/Colors';
 import fonts from '../../styles/Fonts';
 import FontSizes from '../../styles/FontSizes';
-
-const { height } = Dimensions.get('screen');
 
 export const styles = StyleSheet.create({
     container: {
@@ -17,14 +15,13 @@ export const styles = StyleSheet.create({
         color: colors.primay_color
     },
     subTitle: {
-        fontSize: FontSizes.LARGE_30,
-        fontFamily: fonts.FONT_POP_SEMI_BOLD,
-        color: colors.black,
-        marginVertical: wp(3)
+        fontSize: FontSizes.REGULAR_18,
+        fontFamily: fonts.FONT_POP_REGULAR,
+        color: '#767676',
     },
     textView: {
-        padding: wp(5),
-        marginTop: wp(18)
+        paddingHorizontal: wp(4),
+        marginTop: hp(14)
     },
     image: {
         height: wp(5),
@@ -36,7 +33,7 @@ export const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     textInputStyle: {
-        width: wp(85),
+        width: wp(90),
         alignSelf: "center",
         fontSize: FontSizes.SEMI_LARGE_20,
         borderBottomColor: '#DADADA',
@@ -57,6 +54,4 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         top: wp(15)
     },
-
-
 })

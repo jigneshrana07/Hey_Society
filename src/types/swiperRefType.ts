@@ -8,3 +8,9 @@ export interface SwiperRefProps {
         cb?: (previousCardIndex: number, previousCard: any) => void
     ) => void;
 }
+
+export interface InterestList {
+    id: number,
+    name: string,
+    isChecked: boolean
+}

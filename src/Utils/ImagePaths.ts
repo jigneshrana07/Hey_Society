@@ -19,5 +19,8 @@ export const ImagesPath = {
     check: require('../assets/images/check.png'),
     email: require('../assets/images/email.png'),
     group: require('../assets/images/Group.png')
+<<<<<<< HEAD
 
+=======
+>>>>>>> cf8a8235e43c0cf30d25843f149cf58d8296f071
 }
