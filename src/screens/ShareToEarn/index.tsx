@@ -29,7 +29,7 @@ const ShareToEarn = () => {
         return (
             <ImageBackground source={card.image} style={styles.card} resizeMode={'stretch'}>
                 <View style={styles.cardTopStyle}>
-                    <Text style={styles.cardTopTxt}>10¢ per click </Text>
+                    <Text style={styles.cardTopTxt}> 10¢ per click </Text>
 
                 </View>
                 <View style={styles.cardTextView}>
