@@ -45,8 +45,9 @@ const SignInScreen = () => {
                     <Button
                         onPress={() => navigation.navigate('BottomTabScreens')}
                         width={wp(80)}
-                        background={colors.primay_color}
-                        lable={'Login'} fontcolor={colors.white}
+                        backgroundColor={colors.primay_color}
+                        lable={'Login'} 
+                        fontColor={colors.white}
                     />
                 </View>
                 <Text style={styles.orText}>OR</Text>

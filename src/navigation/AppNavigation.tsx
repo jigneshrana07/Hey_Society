@@ -7,6 +7,7 @@ import SignInScreen from '../screens/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import { RootStackParamList } from '../types/rootStackType';
+import FilterScreen from '../screens/FilterScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -24,6 +25,7 @@ const AppNavigation = () => {
                 <Stack.Screen name={'SignInScreen'} component={SignInScreen} />
                 <Stack.Screen name={'SignUpScreen'} component={SignUpScreen} />
                 <Stack.Screen name={'WelcomeScreen'} component={WelcomeScreen} />
+                <Stack.Screen name={'FilterScreen'} component={FilterScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
