@@ -15,5 +15,9 @@ export const ImagesPath = {
     google_icon: require('../assets/images/SignInIcon/google_icon.png'),
     twitter_icon: require('../assets/images/SignInIcon/twitter.png'),
     apple_icon: require('../assets/images/SignInIcon/apple.png'),
-    down_arrow: require('../assets/images/downarrow.png')
+    down_arrow: require('../assets/images/downarrow.png'),
+    check: require('../assets/images/check.png'),
+    email: require('../assets/images/email.png'),
+    group: require('../assets/images/Group.png')
+
 }
