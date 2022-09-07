@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { colors } from '../../styles/Colors';
 import fonts from '../../styles/Fonts';
 import FontSizes from '../../styles/FontSizes';
@@ -158,5 +158,47 @@ export const styles = StyleSheet.create({
         color: colors.white,
         marginVertical: wp(2),
         marginHorizontal: wp(1)
+    },
+    tagRowView: {
+        flexDirection: 'row',
+        marginVertical: wp(5)
+    },
+    tagView: {
+        backgroundColor: colors.primay_color,
+        borderRadius: 5,
+        marginHorizontal: wp(1.5)
+    },
+    tagText: {
+        marginVertical: wp(1),
+        marginHorizontal: wp(4),
+        fontSize: FontSizes.EXTRA_SMALL_10,
+        fontFamily: fonts.FONT_POP_MEDIUM,
+        color: colors.white
+    },
+    textView: {
+        backgroundColor: '#F2F2F2',
+        paddingVertical: wp(3),
+        paddingHorizontal: wp(5),
+        borderRadius: 15
+    },
+    titleText: {
+        fontSize: FontSizes.MEDIUM_16,
+        fontFamily: fonts.FONT_POP_SEMI_BOLD
+    },
+    subText: {
+        fontSize: FontSizes.SMALL_14,
+        fontFamily: fonts.FONT_POP_REGULAR,
+        marginVertical: wp(1.5)
+    },
+    backArrowView: {
+        position: 'absolute',
+        top: hp(8),
+        left: wp(10),
+        zIndex: 1
+    },
+    allTextView: {
+        paddingVertical: wp(3),
+        paddingHorizontal: wp(3),
+        marginTop: wp(2)
     }
 })

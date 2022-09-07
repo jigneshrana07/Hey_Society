@@ -4,6 +4,7 @@ import Button from './Button';
 import CustomInput from './CustomTextInput';
 import CustomDropDown from './CustomDropDown';
 import CustomDatePicker from './CustomDatePicker';
+import CustomDropBox from './CustomDropBox';
 
 export {
     Header,
@@ -11,5 +12,6 @@ export {
     Button,
     CustomInput,
     CustomDropDown,
-    CustomDatePicker
+    CustomDatePicker,
+    CustomDropBox
 }

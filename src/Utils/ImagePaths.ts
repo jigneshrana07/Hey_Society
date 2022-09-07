@@ -18,5 +18,9 @@ export const ImagesPath = {
     down_arrow: require('../assets/images/downarrow.png'),
     check: require('../assets/images/check.png'),
     email: require('../assets/images/email.png'),
-    group: require('../assets/images/Group.png')
+    group: require('../assets/images/Group.png'),
+    profile_image: require('../assets/images/profile_image.png'),
+    back_arrow: require('../assets/images/back_arrow.png'),
+
 }
+
