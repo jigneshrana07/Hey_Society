@@ -11,7 +11,6 @@ interface commanbuttonProps {
     backgroundColor?: string
     width?: any
     fontColor?: string
-    btnStyle?: ViewStyle
 }
 
 const Button = (props: commanbuttonProps & TouchableOpacityProps) => {

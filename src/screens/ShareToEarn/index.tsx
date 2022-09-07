@@ -1,5 +1,5 @@
 import { Text, View, Image, TouchableOpacity, ImageBackground, ScrollView, InteractionManager, Alert } from 'react-native'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { styles } from './styles';
 import { Container, Header } from '../../components'
 import { ImagesPath } from '../../Utils/ImagePaths';
@@ -9,23 +9,28 @@ import { colors } from '../../styles/Colors';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../types/rootStackType';
 import { StackScreenProps } from '@react-navigation/stack';
+import { AppDispatch } from '../../types/CommonTypes';
+import { useDispatch, useSelector } from "react-redux";
+import { getSocialAdsList } from '../../redux/slices/SocialAdsSlice';
+import { RootState } from '../../redux/Store';
+import { SocialAds } from '../../types/SocialAdsTypes'
 
 const ShareToEarn = () => {
     type Props = StackScreenProps<RootStackParamList, 'ShareToEarnScreen'>;
     type ShareToEarnNavigationProps = Props['navigation'];
     const navigation = useNavigation<ShareToEarnNavigationProps>();
-    const swiperRef = useRef<Swiper<{ title: string; type: string; image: any; }> | null>(null);
-    const [isImage, setIsImage] = useState(false)
-    const [isIndex, setIsIndex] = useState(0)
+    const dispatch = useDispatch<AppDispatch>()
+    const swiperRef = useRef<Swiper<SocialAds> | null>(null);
 
-    let data = [
-        { title: 'Dan villa1', type: '4 BHK, California', image: require('../../assets/images/photo.png') },
-        { title: 'Dan villa2', type: '4 BHK, California', image: require('../../assets/images/photo.png') },
-        { title: 'Dan villa3', type: '4 BHK, California', image: require('../../assets/images/photo.png') },
-        { title: 'Dan villa4', type: '4 BHK, California', image: require('../../assets/images/photo.png') },
-        { title: 'Dan villa5', type: '4 BHK, California', image: require('../../assets/images/photo.png') },
-        { title: 'Dan villa6', type: '4 BHK, California', image: require('../../assets/images/photo.png') }
-    ]
+    const [detailView, setDetailView] = useState(false)
+    const [selectIndex, setSelectIndex] = useState(0)
+
+    const { socialAdsList } = useSelector((state: RootState) => state.socialAdsReducer)
+
+
+    useEffect(() => {
+        dispatch(getSocialAdsList())
+    }, [])
 
     const tagData = [
         { title: 'Cosmetics' },
@@ -33,26 +38,26 @@ const ShareToEarn = () => {
         { title: 'Body oils' },
     ]
 
-    const renderCard = (card: { title: string; type: string; image: any; }, index: number) => {
+    const renderCard = (card: SocialAds) => {
         return (
-            <TouchableOpacity onPress={() => setIsImage(!isImage)}>
-                <ImageBackground source={card.image} style={styles.card} resizeMode={'stretch'} >
+            <TouchableOpacity activeOpacity={1} onPress={() => setDetailView(true)}>
+                <ImageBackground source={{ uri: card.ad_img.img }} borderRadius={wp(5)} style={styles.card} resizeMode={'stretch'}>
                     <View style={styles.cardTopStyle}>
                         <Text style={styles.cardTopTxt}> 10¢ per click </Text>
                     </View>
                     <View style={styles.cardTextView}>
-                        <Text style={styles.cardTitle}>{card.title}</Text>
-                        <Text style={styles.cardTypeTxt}>{card.type}</Text>
+                        <Text style={styles.cardTitle}>{card.social_title}</Text>
+                        <Text style={styles.cardTypeTxt}>{card.ad_group.social_status}</Text>
                     </View>
                 </ImageBackground>
-            </TouchableOpacity >
+            </TouchableOpacity>
         )
     };
 
     return (
 
         <View style={styles.container}>
-            {!isImage ? <>
+            {!detailView ? <>
                 <Header
                     headerLeftComponent={
                         <TouchableOpacity>
@@ -69,11 +74,11 @@ const ShareToEarn = () => {
                     }
                 />
                 <Container>
-                    <Swiper
+                    {socialAdsList && socialAdsList.length !== 0 && <Swiper
+                        onSwiped={(number) => setSelectIndex(number + 1)}
                         ref={swiperRef}
-                        cards={[...data]}
-                        key={data.length}
-                        cardIndex={isIndex}
+                        cards={socialAdsList}
+                        cardIndex={0}
                         cardVerticalMargin={wp(10)}
                         renderCard={renderCard}
                         disableBottomSwipe={true}
@@ -81,7 +86,7 @@ const ShareToEarn = () => {
                         stackSize={2}
                         stackScale={5}
                         stackSeparation={-wp(10)}
-                        // onTapCard={(index) => setIsIndex(data[index])}
+                        onTapCard={(number) => { console.log(number) }}
                         overlayLabels={{
                             left: {
                                 element: (
@@ -114,12 +119,11 @@ const ShareToEarn = () => {
                         animateCardOpacity
                         swipeBackCard
                         backgroundColor={colors.white}
-                        onSwiped={(cardIndex) => { setIsIndex(cardIndex + 1) }}
-                    />
+                    />}
                 </Container>
             </> :
                 <>
-                    <TouchableOpacity style={styles.backArrowView} onPress={() => setIsImage(false)}>
+                    <TouchableOpacity style={styles.backArrowView} onPress={() => setDetailView(false)}>
                         <Image source={ImagesPath.back_icon} style={styles.backIcon} resizeMode={'contain'} />
                     </TouchableOpacity>
                     <ScrollView>
@@ -157,7 +161,11 @@ const ShareToEarn = () => {
                 </>}
             <View style={styles.bottomBtnContainer}>
                 <TouchableOpacity
-                    onPress={() => { swiperRef.current?.swipeLeft(), setIsImage(false) }}
+                    onPress={() => {
+                        swiperRef.current?.swipeLeft()
+                        setDetailView(false)
+                    }}
+                    disabled={socialAdsList && (selectIndex == socialAdsList.length) ? true : false}
                     style={styles.btnSubButtonStyle}>
                     <Image source={ImagesPath.close_icon} resizeMode={'contain'} style={[styles.subBtnIconStyle, { tintColor: colors.lightred }]} />
                 </TouchableOpacity>
@@ -166,7 +174,11 @@ const ShareToEarn = () => {
                     <Image source={ImagesPath.detail_icon} resizeMode={'contain'} style={styles.shareBtnIconStyle} />
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => { swiperRef.current?.swipeRight(), setIsImage(false) }}
+                    onPress={() => {
+                        swiperRef.current?.swipeRight()
+                        setDetailView(false)
+                    }}
+                    disabled={socialAdsList && (selectIndex == socialAdsList.length) ? true : false}
                     style={styles.btnSubButtonStyle}>
                     <Image source={ImagesPath.like_icon} resizeMode={'contain'} style={[styles.subBtnIconStyle, { tintColor: colors.green }]} />
                 </TouchableOpacity>

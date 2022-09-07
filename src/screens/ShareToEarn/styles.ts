@@ -28,11 +28,9 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor: '#E8E6EA'
     },
-
     card: {
         height: height / 1.8,
         width: '100%',
-        borderRadius: 4,
         // borderWidth: 2,
         // borderColor: '#E8E8E8',
         // justifyContent: 'center',
