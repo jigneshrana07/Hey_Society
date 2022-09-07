@@ -24,6 +24,7 @@ const ShareToEarn = () => {
 
     const [detailView, setDetailView] = useState(false)
     const [selectIndex, setSelectIndex] = useState(0)
+    const [selectedItem, setSelectedItem] = useState<SocialAds>()
 
     const { socialAdsList } = useSelector((state: RootState) => state.socialAdsReducer)
 
@@ -40,14 +41,19 @@ const ShareToEarn = () => {
 
     const renderCard = (card: SocialAds) => {
         return (
-            <TouchableOpacity activeOpacity={1} onPress={() => setDetailView(true)}>
+            <TouchableOpacity
+                activeOpacity={1}
+                onPress={() => {
+                    setSelectedItem(card)
+                    setDetailView(true)
+                }}>
                 <ImageBackground source={{ uri: card.ad_img.img }} borderRadius={wp(5)} style={styles.card} resizeMode={'stretch'}>
                     <View style={styles.cardTopStyle}>
-                        <Text style={styles.cardTopTxt}> 10¢ per click </Text>
+                        <Text style={styles.cardTopTxt}>{card.ad_group.social_cost_per_click} per click</Text>
                     </View>
                     <View style={styles.cardTextView}>
                         <Text style={styles.cardTitle}>{card.social_title}</Text>
-                        <Text style={styles.cardTypeTxt}>{card.ad_group.social_status}</Text>
+                        <Text style={styles.cardTypeTxt}>{card.ad_group.advertiser?.company}</Text>
                     </View>
                 </ImageBackground>
             </TouchableOpacity>
@@ -128,14 +134,14 @@ const ShareToEarn = () => {
                     </TouchableOpacity>
                     <ScrollView>
                         <Container style={{ paddingHorizontal: wp(5), bottom: wp(10) }}>
-                            <ImageBackground source={ImagesPath.photo_icon} style={styles.card} resizeMode={'stretch'}>
+                            <ImageBackground source={{ uri: selectedItem?.ad_img.img }} borderRadius={wp(5)} style={styles.card} resizeMode={'stretch'}>
                                 <View style={[styles.cardTextView, { flexDirection: 'row', justifyContent: 'space-between' }]}>
                                     <View>
-                                        <Text style={styles.cardTitle}>Hot Toddy</Text>
-                                        <Text style={styles.cardTypeTxt}>4 BHK, California</Text>
+                                        <Text numberOfLines={1} style={[styles.cardTitle, { width: wp(45) }]}>{selectedItem?.social_title}</Text>
+                                        <Text style={styles.cardTypeTxt}>{selectedItem?.ad_group.advertiser?.company}</Text>
                                     </View>
                                     <View style={styles.cardTopStyle}>
-                                        <Text style={styles.cardTopTxt}> 10¢ per click </Text>
+                                        <Text style={styles.cardTopTxt}>{selectedItem?.ad_group.social_cost_per_click}$ per click</Text>
                                     </View>
                                 </View>
                             </ImageBackground>
