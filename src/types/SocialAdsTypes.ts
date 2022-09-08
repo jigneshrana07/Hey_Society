@@ -35,6 +35,11 @@ export interface SocialAds {
     utm_params: string
 }
 
+export interface socialLink {
+    link: string
+}
+
+
 
 // ad_group:
 // advertiser: {logo: null, company: 'Ububble, S.A. de C.V.'}

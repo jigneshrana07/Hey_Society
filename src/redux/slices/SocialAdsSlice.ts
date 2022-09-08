@@ -2,8 +2,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { ApiConstants } from "../../config/ApiConstants";
 import { axiosClient } from "../../config/Axios";
-import { commonInitialStateTypes } from "../../types/CommonTypes";
-import { SocialAds } from "../../types/SocialAdsTypes";
+import { apiErrorTypes, commonInitialStateTypes } from "../../types/CommonTypes";
+import { SocialAds, socialLink } from "../../types/SocialAdsTypes";
 
 interface initialStateTypes extends commonInitialStateTypes {
     socialAdsList?: Array<SocialAds>
@@ -26,6 +26,17 @@ export const getSocialAdsList = createAsyncThunk<SocialAds>(NAME + "/SocialList"
     }
 })
 
+export const getSocialLink = createAsyncThunk<socialLink, number, { rejectValue: apiErrorTypes }>(NAME + "/SocialLink", async (params, { rejectWithValue }) => {
+    try {
+        console.log('API', `${ApiConstants.SOCIAL_ADS}` + params + `/select/`);
+        const response = await axiosClient.post(ApiConstants.SOCIAL_ADS + params + `/select/`);
+        return response?.data
+    } catch (e: any) {
+        return rejectWithValue(e)
+    }
+})
+
+
 export const AuthSlice = createSlice({
     name: NAME,
     initialState,
@@ -39,7 +50,7 @@ export const AuthSlice = createSlice({
         builder.addCase(getSocialAdsList.fulfilled, (state, action) => {
             console.log({ action })
             state.isLoading = false
-            state.socialAdsList = state.socialAdsList?.concat(action.payload) 
+            state.socialAdsList = state.socialAdsList?.concat(action.payload)
         })
         builder.addCase(getSocialAdsList.rejected, (state, { payload, error }) => {
             state.isLoading = false

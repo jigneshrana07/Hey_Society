@@ -1,4 +1,4 @@
-import { Text, View, Image, TouchableOpacity, ImageBackground, ScrollView, InteractionManager, Alert } from 'react-native'
+import { Text, View, Image, TouchableOpacity, ImageBackground, ScrollView, InteractionManager, Alert, Share } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import { styles } from './styles';
 import { Container, Header } from '../../components'
@@ -11,7 +11,7 @@ import { RootStackParamList } from '../../types/rootStackType';
 import { StackScreenProps } from '@react-navigation/stack';
 import { AppDispatch } from '../../types/CommonTypes';
 import { useDispatch, useSelector } from "react-redux";
-import { getSocialAdsList } from '../../redux/slices/SocialAdsSlice';
+import { getSocialLink, getSocialAdsList } from '../../redux/slices/SocialAdsSlice';
 import { RootState } from '../../redux/Store';
 import { SocialAds } from '../../types/SocialAdsTypes'
 
@@ -27,7 +27,6 @@ const ShareToEarn = () => {
     const [selectedItem, setSelectedItem] = useState<SocialAds>()
 
     const { socialAdsList } = useSelector((state: RootState) => state.socialAdsReducer)
-
 
     useEffect(() => {
         dispatch(getSocialAdsList())
@@ -46,6 +45,7 @@ const ShareToEarn = () => {
                 onPress={() => {
                     setSelectedItem(card)
                     setDetailView(true)
+                    console.log(selectedItem?.id);
                 }}>
                 <ImageBackground source={{ uri: card.ad_img.img }} borderRadius={wp(5)} style={styles.card} resizeMode={'stretch'}>
                     <View style={styles.cardTopStyle}>
@@ -58,6 +58,26 @@ const ShareToEarn = () => {
                 </ImageBackground>
             </TouchableOpacity>
         )
+    };
+
+    const onShare = () => {
+        const currentItem = socialAdsList && socialAdsList[selectIndex]
+        if (currentItem && currentItem.id) {
+            dispatch(getSocialLink(currentItem?.id)).unwrap().then(async (res) => {
+                const result = await Share.share({
+                    message: `Share App with your Friends \n ${res.link}`
+                });
+                if (result.action === Share.sharedAction) {
+                    if (result.activityType) {
+
+                    } else {
+                        // shared
+                    }
+                } else if (result.action === Share.dismissedAction) {
+                    // dismissed
+                }
+            })
+        }
     };
 
     return (
@@ -84,7 +104,7 @@ const ShareToEarn = () => {
                         onSwiped={(number) => setSelectIndex(number + 1)}
                         ref={swiperRef}
                         cards={socialAdsList}
-                        cardIndex={0}
+                        cardIndex={selectIndex}
                         cardVerticalMargin={wp(10)}
                         renderCard={renderCard}
                         disableBottomSwipe={true}
@@ -176,6 +196,7 @@ const ShareToEarn = () => {
                     <Image source={ImagesPath.close_icon} resizeMode={'contain'} style={[styles.subBtnIconStyle, { tintColor: colors.lightred }]} />
                 </TouchableOpacity>
                 <TouchableOpacity
+                    onPress={() => onShare()}
                     style={styles.shareBtnStyle}>
                     <Image source={ImagesPath.detail_icon} resizeMode={'contain'} style={styles.shareBtnIconStyle} />
                 </TouchableOpacity>
