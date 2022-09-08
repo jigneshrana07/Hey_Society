@@ -14,10 +14,10 @@ interface headerProps {
 }
 
 const Header = ({ containerStyle, headerLeftComponent, headerCenterComponent, headerRightComponent, headerRightStyle, headerCenterStyle, headerLeftStyle }: headerProps) => {
-    
+
     return (
         <View style={[styles.header, containerStyle]}>
-            <View style={{ height: Platform.OS == 'ios' ? StatusBarManager.HEIGHT - wp(2.5) : StatusBarManager.HEIGHT }} />
+            <View style={{ height: StatusBarManager.HEIGHT }} />
             <View style={styles.headerBox}>
                 <View style={[styles.headerLeft, headerLeftStyle]}>
                     {headerLeftComponent}
