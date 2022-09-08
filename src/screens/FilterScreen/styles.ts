@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
     rowView: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingVertical: wp(5),
+        paddingVertical: wp(2.5),
         paddingHorizontal: wp(5)
     },
     lableText: {

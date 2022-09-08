@@ -26,8 +26,6 @@ const SignInScreen = () => {
     type SignInScreenNavigationProps = Props['navigation'];
     const navigation = useNavigation<SignInScreenNavigationProps>();
     const dispatch = useDispatch<AppDispatch>();
-    const [isEmail, SetIsEmail] = useState('paolas@kimikads.com');
-    const [isPassword, setIsPassword] = useState('paola123');
 
     return (
         <Container style={{ justifyContent: 'space-between' }}>
@@ -50,7 +48,7 @@ const SignInScreen = () => {
                 >
                     {({ handleSubmit, values, handleChange, setValues, errors, touched }) => (
                         <>
-                            <View style={{ marginTop: wp(4) }}>
+                            <View style={{ marginTop: wp(2.5) }}>
                                 <Text style={styles.textInputTitle}>Email</Text>
                                 <TextInput
                                     placeholder='Email'
@@ -72,7 +70,7 @@ const SignInScreen = () => {
                             </View>
                             <Text style={styles.forgotText}>forgot password?</Text>
                             <Button
-                                style={{ marginTop: wp(10) }}
+                                style={{ marginTop: wp(3) }}
                                 onPress={handleSubmit}
                                 width={wp(80)}
                                 backgroundColor={colors.primay_color}

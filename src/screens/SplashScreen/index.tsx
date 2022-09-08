@@ -26,7 +26,7 @@ const SplashScreen = () => {
                     />
                 }
             />
-            <Container>
+            <Container style={styles.containerStyle}>
                 <Text style={styles.headerTxtStyle}>
                     Share brands and products with your friends and earn money.
                 </Text>

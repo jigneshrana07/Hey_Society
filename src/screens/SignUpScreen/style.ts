@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     },
     textView: {
         paddingHorizontal: wp(4),
-        marginTop: hp(14)
+        marginTop: hp(8)
     },
     image: {
         height: wp(5),
@@ -108,7 +108,7 @@ export const styles = StyleSheet.create({
     interestRowview: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: wp(45),
+        width: wp(48),
         marginVertical: wp(2.5)
     },
     checkBoxView: {

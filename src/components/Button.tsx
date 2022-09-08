@@ -14,7 +14,6 @@ interface commanbuttonProps {
 }
 
 const Button = (props: commanbuttonProps & TouchableOpacityProps) => {
-
     return (
         <TouchableOpacity
             {...props}
@@ -35,10 +34,9 @@ const pagestyles = StyleSheet.create({
     },
     buttonmainview: {
         alignSelf: 'center',
-        borderRadius: wp(50),
+        borderRadius: wp(20),
         justifyContent: 'center',
         alignItems: 'center',
-        elevation: 25,
     },
 });
 export default Button;

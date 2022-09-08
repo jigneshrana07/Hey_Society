@@ -12,6 +12,10 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.white,
         alignItems: 'center'
     },
+    containerStyle: {
+        justifyContent: 'space-between',
+        paddingVertical: wp(8)
+    },
     image: {
         height: height / 2.5,
         width: height / 2.5,
@@ -24,18 +28,12 @@ export const styles = StyleSheet.create({
         color: colors.black,
         textAlign: 'center',
         width: wp(90),
-        marginVertical: wp(10),
     },
     buttonView: {
-        position: 'absolute',
-        bottom: wp(8),
         alignSelf: 'center'
     },
     headerImage: {
-        height: wp(32),
+        height: wp(12),
         width: wp(32),
-        top: wp(5)
     }
-
-
 })

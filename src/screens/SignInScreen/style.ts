@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { colors } from '../../styles/Colors';
 import fonts from '../../styles/Fonts';
 import FontSizes from '../../styles/FontSizes';
@@ -16,7 +16,6 @@ export const styles = StyleSheet.create({
         fontSize: FontSizes.LARGE_30,
         fontFamily: fonts.FONT_POP_SEMI_BOLD,
         marginHorizontal: wp(4),
-        marginTop: wp(4)
     },
     textInputTitle: {
         fontSize: FontSizes.SMALL_14,
@@ -34,7 +33,6 @@ export const styles = StyleSheet.create({
         fontSize: FontSizes.MEDIUM_16,
         fontWeight: '500',
         marginTop: wp(2.5),
-        marginBottom: wp(0.5),
         marginHorizontal: wp(4)
     },
     forgotText: {

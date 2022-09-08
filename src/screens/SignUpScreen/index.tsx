@@ -181,7 +181,7 @@ const SignUpScreen = () => {
                                 </Text>
                             </Text>
                         </View>
-                        <View style={{ marginTop: wp(6) }}>
+                        <View style={{ marginTop: wp(2.5) }}>
                             <FlatList
                                 contentContainerStyle={{ marginHorizontal: wp(5) }}
                                 data={products}

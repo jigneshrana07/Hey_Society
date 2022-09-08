@@ -8,10 +8,12 @@ import RangeSlider from '../../components/Slider/index'
 import { colors } from '../../styles/Colors'
 
 const FilterScreen = () => {
+
     const action = [
         { label: 'hygyug', value: 0 },
         { label: 'jhgyhgy', value: 1 }
     ]
+
     return (
         <View style={styles.container}>
             <Header
@@ -49,7 +51,7 @@ const FilterScreen = () => {
                 </View>
                 <View style={styles.buttonView}>
                     <Button
-                        btnStyle={{ borderRadius: 5 }}
+                        style={{ borderRadius: 5 }}
                         width={wp(90)}
                         backgroundColor={colors.primay_color}
                         lable={'Continue'}

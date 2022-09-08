@@ -5,7 +5,12 @@ import Rail from "./Rail";
 import RailSelected from "./RailSelected";
 import Thumb from "./Thumb";
 
-const RangeSlider = ({ from, to }) => {
+interface RangeSliderProps {
+    from: number
+    to: number
+}
+
+const RangeSlider = ({ from, to }: RangeSliderProps) => {
     const [low, setLow] = useState(from);
     const [high, setHigh] = useState(to);
     const renderThumb = useCallback(() => <Thumb />, []);
@@ -13,7 +18,7 @@ const RangeSlider = ({ from, to }) => {
     const renderRailSelected = useCallback(() => <RailSelected />, []);
 
     const handleValueChange = useCallback(
-        (newLow, newHigh) => {
+        (newLow: number, newHigh: number) => {
             setLow(newLow);
             setHigh(newHigh);
         },

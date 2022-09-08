@@ -1,4 +1,4 @@
-import { NativeModules, StyleSheet, View, ViewStyle } from 'react-native';
+import { NativeModules, Platform, StatusBar, StyleSheet, View, ViewStyle } from 'react-native';
 import React from 'react';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 const { StatusBarManager } = NativeModules;
@@ -14,9 +14,10 @@ interface headerProps {
 }
 
 const Header = ({ containerStyle, headerLeftComponent, headerCenterComponent, headerRightComponent, headerRightStyle, headerCenterStyle, headerLeftStyle }: headerProps) => {
+    
     return (
         <View style={[styles.header, containerStyle]}>
-            <View style={{ height: StatusBarManager.HEIGHT - wp(3.5) }} />
+            <View style={{ height: Platform.OS == 'ios' ? StatusBarManager.HEIGHT - wp(2.5) : StatusBarManager.HEIGHT }} />
             <View style={styles.headerBox}>
                 <View style={[styles.headerLeft, headerLeftStyle]}>
                     {headerLeftComponent}
@@ -65,11 +66,6 @@ const styles = StyleSheet.create({
         paddingLeft: wp(5),
     },
     headerRight: {
-        // width: '20%',
-        // position: 'absolute',
-        // right: '5%',
-        // alignItems: 'center',
-        // justifyContent: 'center'
         position: 'absolute',
         right: 0,
         flexDirection: "row",

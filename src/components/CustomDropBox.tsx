@@ -17,46 +17,52 @@ const CustomDropBox = (props: CustomDropBoxnProps & PickerSelectProps) => {
         return <Image source={ImagesPath.down_arrow} resizeMode={'contain'} style={{ height: wp(3.5), width: wp(3.5), tintColor: colors.primay_color }} />
     }
     return (
-        <TouchableWithoutFeedback>
-            <View style={{ marginHorizontal: wp(4), marginTop: wp(4) }}>
-                <Text style={[styles.labelTxt, { fontSize: FontSizes.MEDIUM_16 }]}>{props.lable}</Text>
-                <View style={styles.showfeedView}>
-                    <RNPickerSelect
-                        {...props}
-                        placeholder={props.placeholder ? {
-                            label: props.placeholder,
-                            value: null
-                        } : {}}
-                        style={{
-                            placeholder: {
-                                fontSize: FontSizes.MEDIUM_16,
-                                fontFamily: fonts.FONT_POP_MEDIUM,
-                                color: '#878EA4',
-                            },
-                            inputIOS: {
-                                height: 50,
-                                fontSize: FontSizes.SMALL_14,
-                                fontFamily: fonts.FONT_POP_MEDIUM,
-                                color: '#878EA4',
-                            },
-                            inputAndroid: {
-                                height: 50,
-                                fontSize: FontSizes.SMALL_14,
-                                fontFamily: fonts.FONT_POP_MEDIUM,
-                                color: '#878EA4',
-                            },
-                            iconContainer: Platform.OS === 'ios' ? {
-                                top: wp(5),
-                                left: wp(75),
-                            } : {
-                                top: wp(5),
-                            },
-                        }}
-                        Icon={dropdownIcon}
-                    />
-                </View>
-            </View>
-        </TouchableWithoutFeedback>
+        <View style={{ marginHorizontal: wp(4), marginTop: wp(4) }}>
+            <Text style={[styles.labelTxt, { fontSize: FontSizes.MEDIUM_16 }]}>{props.lable}</Text>
+            <RNPickerSelect
+                {...props}
+                placeholder={props.placeholder ? {
+                    label: props.placeholder,
+                    value: null
+                } : {}}
+                useNativeAndroidPickerStyle={false}
+                style={{
+                    placeholder: {
+                        fontSize: FontSizes.MEDIUM_16,
+                        fontFamily: fonts.FONT_POP_MEDIUM,
+                        color: '#878EA4',
+                    },
+                    inputIOS: {
+                        height: 50,
+                        borderWidth: 1.5,
+                        borderRadius: 12,
+                        borderColor: '#DADADA',
+                        fontSize: FontSizes.SEMI_LARGE_20,
+                        fontFamily: fonts.FONT_POP_MEDIUM,
+                        color: '#878EA4',
+                        paddingHorizontal: wp(4),
+                        marginTop: wp(2)
+                    },
+                    inputAndroid: {
+                        height: 50,
+                        borderWidth: 1.5,
+                        borderColor: '#DADADA',
+                        fontSize: FontSizes.SEMI_LARGE_20,
+                        fontFamily: fonts.FONT_POP_MEDIUM,
+                        color: '#878EA4',
+                        borderRadius: 12,
+                        paddingHorizontal: wp(4),
+                        marginTop: wp(2),
+                        padding: 0
+                    },
+                    iconContainer: {
+                        top: wp(6.5),
+                        right: wp(4),
+                    },
+                }}
+                Icon={dropdownIcon}
+            />
+        </View>
     )
 }
 
